@@ -1,0 +1,8 @@
+{
+    "name": "immigrnt",
+    "description": "immigrnt is an hybrid immigration and education platform. It is a seemless mobile and web application that enables users to take advantage of immigration services and professional education",
+    "keywords": [ "Nodejs", "Expressjs", "Mongodb", "hbs", "Html", "Javascript", "Css", "Bootstrap" ],
+    "repository": "https://github.com/jesseokeya/immigrnt",
+    "logo": " ",
+    "image": " "
+}
