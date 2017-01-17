@@ -1,0 +1,39 @@
+{
+  "name": "immigrnt",
+  "version": "1.0.0",
+  "description": "immigrnt is an hybrid immigration and education platform. It is a seemless mobile and web application that enables users to take advantage of immigration services and professional education.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesseokeya/immigrnt.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "Expressjs",
+    "Mongodb",
+    "hbs",
+    "Html",
+    "Javascript",
+    "Css",
+    "Bootstrap"
+  ],
+  "author": "Jesse OKeya & Larry Agbana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesseokeya/immigrnt/issues"
+  },
+  "homepage": "https://github.com/jesseokeya/immigrnt#readme",
+  "dependencies": {
+    "express": "*",
+    "express-handlebars": "*",
+    "mongodb": "^2.2.21",
+    "mongoose": "^4.7.7",
+    "morgan": "*",
+    "nodemon": "*",
+    "path": "*"
+  }
+}
