@@ -8,10 +8,10 @@ var exphbs = require('express-handlebars');
 var nodemon = require('nodemon');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-var configDB = require('./config/database.js');
+//var configDB = require('./config/database.js');
 
-mongoose.connect(configDB.url);
-var db = mongoose.connection;
+//mongoose.connect(configDB.url);
+//var db = mongoose.connection;
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
