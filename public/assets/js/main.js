@@ -113,6 +113,6 @@ function validateForm() {
     }
 
     if (firstname && lastname && email) {
-        alert('Subscription Successfull ✅');
+        alert('Subscription Successful ✅');
     }
 }
