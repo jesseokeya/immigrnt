@@ -1,5 +1,5 @@
 module.exports = {
 
-  'url': 'mongodb://Jesse:Okeya@ds159988.mlab.com:59988/rachelle'
+    'url': 'mongodb://Jesse:Jesse@ds117829.mlab.com:17829/immigrnt-subscription'
 
 };
