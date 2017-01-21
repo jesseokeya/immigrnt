@@ -109,10 +109,10 @@ function validateForm() {
     var email = document.getElementById('email').value;
 
 		if (!firstname || !lastname || !email) {
-        alert('Missing Credentials!');
+        alert('Missing Credentials ⁉️');
     }
 
     if (firstname && lastname && email) {
-        alert('You Successfully Subscribed To Immigrnt');
+        alert('Subscription Successfull ✅');
     }
 }
