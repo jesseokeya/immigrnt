@@ -107,12 +107,24 @@ function validateForm() {
     var fistname = document.getElementById('firstname').value;
     var lastname = document.getElementById('lastname').value;
     var email = document.getElementById('email').value;
+    var count = 0;
 
-		if (!firstname || !lastname || !email) {
+    if (email) {
+        for (var i = 0; i < email.length; i++) {
+            if (email.charAt(i) == '@') {
+                count++;
+            }
+        }
+        if(count != 1){
+          alert('Invalid Email ⛔️');
+        }
+    }
+
+    if (!firstname || !lastname || !email){
         alert('Missing Credentials ⁉️');
     }
 
-    if (firstname && lastname && email) {
+    if ((firstname && lastname && email) && count == 1) {
         alert('Subscription Successful ✅');
     }
 }

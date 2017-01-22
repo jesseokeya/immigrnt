@@ -23,10 +23,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     opacity: 0.8;
     background-color: rgba(44, 62, 80, 0.5);
     padding: 15px;
+
     border-radius: 8px;
     color: black;
     width: 295px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
