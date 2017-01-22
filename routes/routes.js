@@ -1,4 +1,5 @@
 var express = require('express');
+var validator = require("email-validator");
 var router = express.Router();
 var User = require('../models/user');
 
@@ -15,21 +16,17 @@ router.post('/subscribtion', function(req, res) {
     var lastname = req.body.lastname;
     var email = req.body.email;
 
-    var count = 0;
-    if (email) {
-        for (var i = 0; i < email.length; i++) {
-            if (email.charAt(i) == '@') {count++;}
-        }
-    }
+    var emailValidator = validator.validate(email);
+    //console.log(emailValidator);
 
-    if (count == 1 && firstname && lastname && email) {
+    if (emailValidator && firstname && lastname && email) {
         var newUser = new User({
             firstname: firstname,
             lastname: lastname,
             email: email
         });
 
-        console.log(newUser);
+        console.log(JSON.stringify(newUser, null, 4));
 
         newUser.save(function(err) {
             if (err) throw err;
