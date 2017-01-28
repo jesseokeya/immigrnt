@@ -2577,7 +2577,7 @@ body.landing #page-wrapper {
 #banner {
     background-attachment: scroll, fixed;
     background-color: #666;
-    background-image: url("images/overlay.png"), url("../../images/banner.jpg");
+    background-image: url("images/overlay.png"), url("https://slack-imgs.com/?c=1&url=http%3A%2F%2F0.s3.envato.com%2Ffiles%2F181263621%2Ftravel%25209.jpg");
     background-position: top left, center center;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
