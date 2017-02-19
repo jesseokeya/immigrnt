@@ -1,33 +1,30 @@
+'use strict';
 //import node js modules
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
-var logger = require('morgan');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-var configDB = require('./config/database.js');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const exphbs = require('express-handlebars');
+const expressValidator = require('express-validator');
+const logger = require('morgan');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const mongo = require('mongodb');
+const mongoose = require('mongoose');
+const configDB = require('./config/database.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url);
-var db = mongoose.connection;
-
-var router = require('./routes/routes');
-
-
-//console.log(db)
+const db = mongoose.connection;
+const router = require('./routes/routes');
 
 // Init App
-var app = express();
+const app = express();
 
 // View Engine
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, './immigrnt.min/views'));
 app.engine('hbs', exphbs({extname: 'hbs'}));
 app.set('view engine', 'hbs');
 
@@ -39,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './immigrnt.min/public')));
 
 // Express Session
 app.use(session({
@@ -55,7 +52,7 @@ app.use(passport.session());
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
+      let namespace = param.split('.')
       , root    = namespace.shift()
       , formParam = root;
 
@@ -73,7 +70,7 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
-// Global Vars
+// Global consts
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
@@ -85,7 +82,7 @@ app.use(function (req, res, next) {
 app.use('/', router);
 
 // Set Port
-var port = process.env.PORT || 2000;
+const port = process.env.PORT || 2000;
 
 app.listen(port, function() {
     console.log('immigrnt server is running on http://localhost:' + port);

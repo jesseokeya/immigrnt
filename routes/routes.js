@@ -1,7 +1,7 @@
-var express = require('express');
-var validator = require("email-validator");
-var router = express.Router();
-var User = require('../models/user');
+const express = require('express');
+const validator = require("email-validator");
+const router = express.Router();
+const User = require('../models/user');
 
 // Get Routes
 router.get('/', function(req, res) {

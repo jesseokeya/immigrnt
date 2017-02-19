@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
+'use strict';
+const mongoose = require('mongoose');
 // User Schema
-var UserSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
     firstname: {
         type: String,
         index: true
