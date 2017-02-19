@@ -17,7 +17,7 @@ request('http://geoip.nekudo.com/api/<ip address>', function(error, response, bo
 
 // Get Routes
 router.get('/', function(req, res) {
-    console.log(userLocation);
+    //console.log(userLocation);
     res.render('index', {
         info: 'homepage'
     });
