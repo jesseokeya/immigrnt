@@ -38,7 +38,6 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
-    "ip-location": "^1.0.1",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "^1.7.0",

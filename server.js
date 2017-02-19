@@ -13,7 +13,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-const configDB = require('./config/database.js');
+const configDB = require('./config/config.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url);
@@ -37,7 +37,6 @@ app.use(cookieParser());
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, './immigrnt.min/public')));
-
 // Express Session
 app.use(session({
     secret: 'secret',
@@ -84,6 +83,6 @@ app.use('/', router);
 // Set Port
 const port = process.env.PORT || 2000;
 
-app.listen(port, function() {
+app.listen(port, () => {
     console.log('immigrnt server is running on http://localhost:' + port);
 })

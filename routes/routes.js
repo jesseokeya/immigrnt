@@ -4,17 +4,20 @@ const express = require('express');
 const validator = require("email-validator");
 const router = express.Router();
 const User = require('../models/user');
-const config = require('.././config/email');
-const ipLocation = require('ip-location');
+const config = require('.././config/config');
+const request = require('request');
 let userLocation;
 
-ipLocation('', function(err, data) {
-    userLocation = data;
+request('http://geoip.nekudo.com/api/<ip address>', function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        body = JSON.parse(body);
+        userLocation = body;
+    }
 })
 
 // Get Routes
 router.get('/', function(req, res) {
-    //console.log(userLocation);
+    console.log(userLocation);
     res.render('index', {
         info: 'homepage'
     });
@@ -23,8 +26,8 @@ router.get('/', function(req, res) {
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: config.email,
-        pass: config.password
+        user: config.mailer.email,
+        pass: config.mailer.password
     }
 });
 
@@ -56,8 +59,8 @@ router.post('/subscribtion', function(req, res) {
             to: 'jesseokeya@gmail.com, larryagbana@gmail.com', // list of receivers
             subject: 'Immigrnt Subscribtion', // Subject line
             text: firstname + ' ' + lastname + ' just subscribed to immgrnt 🤗. Contact details email - ' + email, // plain text body
-            html: '<h2 style="font-family: Comic Sans MS;">' + 'Date and Time: ' + getDateTime() + '<br/>' + firstname + ' ' + lastname + ' just subscribed to immgrnt 🤗. <br/> Location details are below 😁 <br/>' + 'ip-adress: ' + userLocation.ip + ', <br/> City: ' + userLocation.city + ', <br/> Country: ' + userLocation.region_name +  ' ' + userLocation.country_name +  ', <br/>latitude: ' +
-                userLocation.latitude + ', <br/> longitude: ' + userLocation.longitude +  ', <br/> timeZone: ' + userLocation.time_zone +
+            html: '<h2 style="font-family: Comic Sans MS;">' + 'Date and Time: ' + getDateTime() + '<br/>' + firstname + ' ' + lastname + ' just subscribed to immgrnt 🤗. <br/> Location details are below 😁 <br/>' + 'ip-adress: ' + userLocation.ip + ', <br/> City: ' + userLocation.city + ', <br/> Country: ' + userLocation.country.name + ', <br/>latitude: ' +
+                userLocation.location.latitude + ', <br/> longitude: ' + userLocation.location.longitude + ', <br/> timeZone: ' + userLocation.location.time_zone +
                 '<br/> Email: ' + email + ' 👀 . </h2>' // html body
         };
 
