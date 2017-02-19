@@ -5,11 +5,16 @@ const validator = require("email-validator");
 const router = express.Router();
 const User = require('../models/user');
 const config = require('.././config/email');
+const ipLocation = require('ip-location');
+let userLocation;
 
-//console.log(config);
+ipLocation('', function(err, data) {
+    userLocation = data;
+})
 
 // Get Routes
 router.get('/', function(req, res) {
+    //console.log(userLocation);
     res.render('index', {
         info: 'homepage'
     });
@@ -51,7 +56,9 @@ router.post('/subscribtion', function(req, res) {
             to: 'jesseokeya@gmail.com, larryagbana@gmail.com', // list of receivers
             subject: 'Immigrnt Subscribtion', // Subject line
             text: firstname + ' ' + lastname + ' just subscribed to immgrnt 🤗. Contact details email - ' + email, // plain text body
-            html: '<h2 style="background-color: #B2BABB; font-family: Comic Sans MS;">' + firstname + ' ' + lastname + ' just subscribed to immgrnt 🤗. <br/> Contact details email - ' + email + ' 👀 . </h2>'// html body
+            html: '<h2 style="font-family: Comic Sans MS;">' + 'Date and Time: ' + getDateTime() + '<br/>' + firstname + ' ' + lastname + ' just subscribed to immgrnt 🤗. <br/> Location details are below 😁 <br/>' + 'ip-adress: ' + userLocation.ip + ', <br/> City: ' + userLocation.city + ', <br/> Country: ' + userLocation.region_name +  ' ' + userLocation.country_name +  ', <br/>latitude: ' +
+                userLocation.latitude + ', <br/> longitude: ' + userLocation.longitude +  ', <br/> timeZone: ' + userLocation.time_zone +
+                '<br/> Email: ' + email + ' 👀 . </h2>' // html body
         };
 
         // send mail with defined transport object
@@ -59,12 +66,23 @@ router.post('/subscribtion', function(req, res) {
             if (error) {
                 return console.log(error);
             }
-            console.log('Message %s sent: %s', info.messageId, info.response);
+            // console.log('Message %s sent: %s', info.messageId, info.response);
         });
     }
 
     res.redirect('/');
 
 });
+
+function getDateTime() {
+    let currentdate = new Date();
+    let datetime = currentdate.getDate() + "/" +
+        (currentdate.getMonth() + 1) + "/" +
+        currentdate.getFullYear() + " @ " +
+        currentdate.getHours() + ":" +
+        currentdate.getMinutes() + ":" +
+        currentdate.getSeconds();
+    return datetime;
+}
 
 module.exports = router
